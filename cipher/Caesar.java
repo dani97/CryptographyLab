@@ -3,7 +3,7 @@ package cipher;
 import java.util.Scanner;
 
 public class Caesar {
-	public static char[] cipher(String plain,int key){
+	public static String cipher(String plain,int key){
 		char [] text = plain.toCharArray();
 		for(int i=0;i<text.length;i++){
 			char c = text[i];
@@ -15,10 +15,10 @@ public class Caesar {
 			}
 		}
 		
-		return text;
+		return new String(text);
 	}
-	public static char[] decipher(char []  cipher,int key){
-		char [] text = cipher;
+	public static String decipher(String  cipher,int key){
+		char [] text = cipher.toCharArray();
 		for(int i=0;i<text.length;i++){
 			char c = text[i];
 			if(Character.isUpperCase(c)){
@@ -28,15 +28,16 @@ public class Caesar {
 				text[i] = (char) ((c-'a'-key+26)%26+'a');
 			}
 		}
-		return text;
+		return new String(text);
 	}
 	public static void main(String[]args){
 		Scanner sc = new Scanner(System.in);
 		String text = sc.nextLine();
 		int key = sc.nextInt();
 		sc.close();
-		char[]c=cipher(text,key);
+		String c=cipher(text,key);
 		System.out.println(c);
 		System.out.println(decipher(c,key));
 	}
 }
+
